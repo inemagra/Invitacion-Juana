@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>XV Años · Juana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #c4956a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      font-family: 'Montserrat', sans-serif;
+      padding: 0;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(212,175,100,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(180,130,60,0.08) 0%, transparent 50%),
+        linear-gradient(160deg, #faf6ee 0%, #f5edd8 40%, #f0e4c8 100%);
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 48px;
+    }
+
+    /* Textura sutil */
+    .page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content { position: relative; z-index: 1; }
+
+    /* Arco central */
+    .arch-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 24px 0;
+    }
+
+    .arch {
+      width: 100%;
+      max-width: 340px;
+      background: linear-gradient(170deg, #fdfaf3 0%, #f8f0dc 100%);
+      border-radius: 160px 160px 40px 40px;
+      border: 1.5px solid rgba(180,140,60,0.35);
+      padding: 32px 28px 36px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 30px rgba(160,110,40,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .arch::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 155px 155px 36px 36px;
+      border: 0.5px solid rgba(180,140,60,0.2);
+      pointer-events: none;
+    }
+
+    /* Sol/luna ornamento */
+    .sun-ornament {
+      font-size: 13px;
+      color: #b8943c;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+
+    .heart { color: #b8943c; font-size: 14px; margin: 6px 0; }
+
+    .te-invito {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .clume {
+      font-family: 'Dancing Script', cursive;
+      font-size: 44px;
+      font-weight: 600;
+      color: #7a5520;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .de-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    @keyframes shimmer-gold {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: linear-gradient(
+        90deg,
+        #8a6020 0%,
+        #c49a3c 20%,
+        #e8cc70 38%,
+        #f5e090 50%,
+        #e8cc70 62%,
+        #c49a3c 80%,
+        #8a6020 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer-gold 8s linear infinite;
+    }
+
+    /* Ornamento floral */
+    .floral {
+      font-size: 18px;
+      color: #b8943c;
+      margin: 8px 0;
+      opacity: 0.85;
+    }
+
+    .fecha-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #5a3e10;
+      letter-spacing: 2px;
+      margin-bottom: 2px;
+    }
+
+    .a-las {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .hora {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #5a3e10;
+    }
+
+    .divider-floral {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0;
+      justify-content: center;
+      color: #b8943c;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .divider-floral::before,
+    .divider-floral::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: linear-gradient(90deg, transparent, #b8943c, transparent);
+      max-width: 60px;
+    }
+
+    .lugar-icon { font-size: 14px; color: #b8943c; margin-bottom: 4px; }
+
+    .lugar-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #5a3e10;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .lugar-sub {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #9a7435;
+      text-transform: uppercase;
+    }
+
+    .frase {
+      font-family: 'Dancing Script', cursive;
+      font-size: 18px;
+      color: #7a5520;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    /* Cuenta regresiva */
+    .cd-section {
+      padding: 24px 28px 0;
+      text-align: center;
+    }
+
+    .cd-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cd-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 58px;
+    }
+
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #5a3e10;
+      background: linear-gradient(160deg, rgba(212,175,80,0.15) 0%, rgba(255,245,200,0.4) 50%, rgba(212,175,80,0.1) 100%);
+      border: 1px solid rgba(180,140,60,0.3);
+      border-radius: 8px;
+      width: 58px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .cd-txt {
+      font-size: 7px;
+      letter-spacing: 2px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .cd-sep {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #c4a050;
+      padding-top: 12px;
+      opacity: 0.6;
+    }
+
+    /* Botones */
+    .btns {
+      padding: 24px 28px 0;
+      text-align: center;
+    }
+
+    .btn-rsvp {
+      display: block;
+      width: 100%;
+      padding: 16px 0;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #7a5520 0%, #b8943c 40%, #d4b060 60%, #9a7030 100%);
+      color: #fdf6e3;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(120,80,20,0.25);
+      transition: opacity 0.2s, transform 0.15s;
+      margin-bottom: 12px;
+    }
+
+    .btn-rsvp:hover { opacity: 0.88; transform: scale(0.99); }
+
+    .btn-wa {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      border: 1.5px solid rgba(180,140,60,0.4);
+      border-radius: 40px;
+      background: transparent;
+      color: #9a7435;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-wa:hover { opacity: 0.6; }
+
+    .nota {
+      font-size: 9px;
+      color: #b8943c;
+      letter-spacing: 1px;
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    .footer-text {
+      text-align: center;
+      padding: 20px 28px 0;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #9a7435;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* Flores decorativas SVG */
+    .deco-top {
+      width: 100%;
+      text-align: center;
+      padding: 16px 0 0;
+      opacity: 0.5;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(80,50,10,0.4);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: linear-gradient(170deg, #fdfaf3 0%, #f8f0dc 100%);
+      border-radius: 24px;
+      padding: 36px 28px 28px;
+      width: 88%;
+      max-width: 340px;
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(180,140,60,0.3);
+      box-shadow: 0 8px 40px rgba(100,60,10,0.2);
+    }
+
+    .modal-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      color: #7a5520;
+      margin-bottom: 4px;
+    }
+
+    .modal-sub {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #9a7435;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .modal input {
+      width: 100%;
+      border: 1px solid rgba(180,140,60,0.35);
+      border-radius: 8px;
+      padding: 13px 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: #5a3e10;
+      margin-bottom: 12px;
+      outline: none;
+      background: rgba(255,250,235,0.8);
+      transition: border-color 0.2s;
+    }
+
+    .modal input:focus { border-color: #b8943c; }
+
+    .rsvp-opts {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .rsvp-opt {
+      flex: 1;
+      padding: 12px 0;
+      border: 1px solid rgba(180,140,60,0.3);
+      border-radius: 8px;
+      background: transparent;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      color: #9a7435;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 1px;
+    }
+
+    .rsvp-opt.selected {
+      background: linear-gradient(135deg, #7a5520 0%, #b8943c 50%, #9a7030 100%);
+      color: #fdf6e3;
+      border-color: transparent;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      font-size: 18px;
+      color: #b8943c;
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.6;
+    }
+
+    .success-msg { display: none; padding: 8px 0; }
+
+    .success-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 26px;
+      color: #7a5520;
+      margin-bottom: 6px;
+    }
+
+    .success-sub {
+      font-size: 11px;
+      color: #9a7435;
+      letter-spacing: 1px;
+    }
+
+    .event-ended {
+      font-family: 'Dancing Script', cursive;
+      font-size: 20px;
+      color: #9a7435;
+      text-align: center;
+      padding: 8px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="content">
+
+    <!-- Ornamento top -->
+    <div class="deco-top">
+      <svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="24" x2="60" y2="24" stroke="#b8943c" stroke-width="0.5" opacity="0.5"/>
+        <line x1="120" y1="24" x2="180" y2="24" stroke="#b8943c" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="90" cy="20" r="8" stroke="#b8943c" stroke-width="0.8" fill="none" opacity="0.7"/>
+        <path d="M90 8 L90 4 M90 36 L90 40 M78 20 L74 20 M102 20 L106 20 M81.5 11.5 L79 9 M98.5 11.5 L101 9 M81.5 28.5 L79 31 M98.5 28.5 L101 31" stroke="#b8943c" stroke-width="0.7" opacity="0.6"/>
+        <path d="M87 20 Q90 16 93 20 Q90 24 87 20Z" fill="#b8943c" opacity="0.5"/>
+        <circle cx="70" cy="24" r="1.5" fill="#b8943c" opacity="0.4"/>
+        <circle cx="110" cy="24" r="1.5" fill="#b8943c" opacity="0.4"/>
+        <circle cx="55" cy="24" r="1" fill="#b8943c" opacity="0.3"/>
+        <circle cx="125" cy="24" r="1" fill="#b8943c" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- Arco principal -->
+    <div style="position:relative; width:100%; max-width:430px; margin:0 auto;">
+    <div class="arch-wrap">
+    <div class="arch-wrap">
+      <div class="arch">
+        <div class="sun-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <div class="heart">♥</div>
+        <p class="te-invito">Te invito al</p>
+        <div class="clume">Cumple</div>
+        <p class="de-text">de</p>
+        <h1 class="nombre">JUANA</h1>
+
+        <div class="floral">❧ ♥ ❧</div>
+
+        <p class="fecha-num">· 5 / 9 / 26 ·</p>
+        <p class="a-las">a las</p>
+        <p class="hora">21 hs.</p>
+
+        <div class="divider-floral">✦</div>
+
+        <div class="lugar-icon">📍</div>
+        <p class="lugar-nombre">Salón Calatayud</p>
+        <p class="lugar-sub">En Predio Parque Municipal</p>
+
+        <div class="divider-floral">❧</div>
+
+        <p class="frase">Te espero para compartir<br>una noche especial</p>
+        <div class="heart" style="margin-top:10px;">♥</div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Bouquet de flores -->
+    <div style="text-align:center; margin: 8px 0 -20px; position:relative;">
+      <img src="flores.jpg" alt="Flores secas" style="
+        width: 85%;
+        max-width: 340px;
+        display: block;
+        margin: 0 auto;
+        mix-blend-mode: multiply;
+        opacity: 0.88;
+        filter: sepia(15%) saturate(0.9) brightness(1.05);
+      "/>
+    </div>
+
+    <!-- Cuenta regresiva -->
+    <div class="cd-section">
+      <p class="cd-label">Faltan</p>
+      <div class="cd-wrap" id="cd-wrap">
+        <div class="cd-unit">
+          <div class="cd-num" id="cd-d">--</div>
+          <span class="cd-txt">Días</span>
+        </div>
+        <div class="cd-sep">·</div>
+        <div class="cd-unit">
+          <div class="cd-num" id="cd-h">--</div>
+          <span class="cd-txt">Horas</span>
+        </div>
+        <div class="cd-sep">·</div>
+        <div class="cd-unit">
+          <div class="cd-num" id="cd-m">--</div>
+          <span class="cd-txt">Min</span>
+        </div>
+        <div class="cd-sep">·</div>
+        <div class="cd-unit">
+          <div class="cd-num" id="cd-s">--</div>
+          <span class="cd-txt">Seg</span>
+        </div>
+      </div>
+      <p class="event-ended" id="event-ended">¡Llegaron mis 15 años!</p>
+    </div>
+
+    <!-- Botones -->
+    <div class="btns">
+      <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(184,148,60,0.3),transparent); margin-bottom:24px;"></div>
+      <button class="btn-rsvp" onclick="openModal()">Confirmar Asistencia</button>
+      <button class="btn-wa" onclick="window.open('https://wa.me/5493385469383?text=Hola%21%20Tengo%20una%20pregunta%20sobre%20los%20XV%20de%20Juana%20%F0%9F%8E%80','_blank')">¿Tienes preguntas?</button>
+      <p class="nota">Por favor confirmar antes del 25 de agosto</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-text">
+      Conexión · Risas · Amistad · Momentos que quedan
+    </div>
+
+  <!-- Velas y ramas borde inferior -->
+  <div style="position:relative; width:100%; height:180px; margin-top:24px; overflow:hidden;">
+    <svg width="100%" height="180" viewBox="0 0 430 180" preserveAspectRatio="xMidYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ===== RAMAS TUPIDAS ===== -->
+      <!-- Rama grande izquierda -->
+      <path d="M0 180 Q30 140 55 100 Q70 75 80 50" stroke="#6b4220" stroke-width="2.2" fill="none" opacity="0.8"/>
+      <path d="M0 180 Q-5 150 10 125" stroke="#7a5228" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <!-- Ramitas izq -->
+      <path d="M25 158 Q5 145 -5 130" stroke="#7a5228" stroke-width="1.2" fill="none" opacity="0.65"/>
+      <ellipse cx="-6" cy="129" rx="5" ry="9" fill="#9a6a3a" opacity="0.6" transform="rotate(-15 -6 129)"/>
+      <ellipse cx="0" cy="120" rx="4" ry="8" fill="#8B5E3C" opacity="0.55" transform="rotate(5 0 120)"/>
+      <ellipse cx="7" cy="112" rx="3.5" ry="7" fill="#a0714a" opacity="0.5" transform="rotate(-10 7 112)"/>
+      <ellipse cx="13" cy="104" rx="3" ry="6" fill="#9a6a3a" opacity="0.45" transform="rotate(8 13 104)"/>
+
+      <path d="M40 138 Q18 122 5 105" stroke="#7a5228" stroke-width="1.2" fill="none" opacity="0.65"/>
+      <ellipse cx="4" cy="103" rx="5" ry="9" fill="#9a6a3a" opacity="0.58" transform="rotate(-10 4 103)"/>
+      <ellipse cx="11" cy="94" rx="4" ry="8" fill="#8B5E3C" opacity="0.52" transform="rotate(6 11 94)"/>
+      <ellipse cx="18" cy="86" rx="3.5" ry="7" fill="#a0714a" opacity="0.47" transform="rotate(-8 18 86)"/>
+      <ellipse cx="24" cy="78" rx="3" ry="6" fill="#b08040" opacity="0.43" transform="rotate(10 24 78)"/>
+
+      <path d="M55 118 Q35 102 22 84" stroke="#7a5228" stroke-width="1.1" fill="none" opacity="0.6"/>
+      <ellipse cx="21" cy="82" rx="4.5" ry="8.5" fill="#9a6a3a" opacity="0.55" transform="rotate(-8 21 82)"/>
+      <ellipse cx="28" cy="73" rx="3.5" ry="7" fill="#8B5E3C" opacity="0.5" transform="rotate(7 28 73)"/>
+      <ellipse cx="34" cy="65" rx="3" ry="6" fill="#a0714a" opacity="0.45" transform="rotate(-6 34 65)"/>
+
+      <path d="M65 98 Q48 80 38 60" stroke="#7a5228" stroke-width="1" fill="none" opacity="0.55"/>
+      <ellipse cx="37" cy="58" rx="4" ry="8" fill="#9a6a3a" opacity="0.5" transform="rotate(-6 37 58)"/>
+      <ellipse cx="44" cy="49" rx="3.5" ry="7" fill="#8B5E3C" opacity="0.45" transform="rotate(8 44 49)"/>
+
+      <!-- Hojas grandes izq -->
+      <path d="M0 175 Q35 145 58 105 Q32 142 0 175Z" fill="#7a5228" opacity="0.22"/>
+      <path d="M5 180 Q42 155 62 118 Q38 152 5 180Z" fill="#9a6a3a" opacity="0.18"/>
+      <path d="M30 162 Q58 135 72 98 Q50 132 30 162Z" fill="#7a5228" opacity="0.18"/>
+
+      <!-- Flores izquierda -->
+      <circle cx="20" cy="148" r="7" fill="#d4956a" opacity="0.7"/>
+      <circle cx="20" cy="148" r="3" fill="#f0c870" opacity="0.8"/>
+      <ellipse cx="20" cy="139" rx="2.5" ry="5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="20" cy="157" rx="2.5" ry="5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="11" cy="148" rx="5" ry="2.5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="29" cy="148" rx="5" ry="2.5" fill="#d4a96a" opacity="0.55"/>
+
+      <circle cx="46" cy="122" r="6" fill="#c49a6c" opacity="0.65"/>
+      <circle cx="46" cy="122" r="2.5" fill="#e8cc90" opacity="0.75"/>
+      <ellipse cx="46" cy="114" rx="2" ry="4" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="46" cy="130" rx="2" ry="4" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="38" cy="122" rx="4" ry="2" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="54" cy="122" rx="4" ry="2" fill="#c49a6c" opacity="0.5"/>
+
+      <circle cx="68" cy="88" r="5" fill="#d4a96a" opacity="0.6"/>
+      <circle cx="68" cy="88" r="2" fill="#f0d878" opacity="0.7"/>
+      <circle cx="78" cy="62" r="4" fill="#b8943c" opacity="0.55"/>
+      <circle cx="78" cy="62" r="1.5" fill="#f0e090" opacity="0.65"/>
+
+      <!-- ===== RAMA GRANDE DERECHA ===== -->
+      <path d="M430 180 Q400 140 375 100 Q360 75 350 50" stroke="#6b4220" stroke-width="2.2" fill="none" opacity="0.8"/>
+      <path d="M430 180 Q435 150 420 125" stroke="#7a5228" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+      <path d="M405 158 Q425 145 435 130" stroke="#7a5228" stroke-width="1.2" fill="none" opacity="0.65"/>
+      <ellipse cx="436" cy="129" rx="5" ry="9" fill="#9a6a3a" opacity="0.6" transform="rotate(15 436 129)"/>
+      <ellipse cx="430" cy="120" rx="4" ry="8" fill="#8B5E3C" opacity="0.55" transform="rotate(-5 430 120)"/>
+      <ellipse cx="423" cy="112" rx="3.5" ry="7" fill="#a0714a" opacity="0.5" transform="rotate(10 423 112)"/>
+      <ellipse cx="417" cy="104" rx="3" ry="6" fill="#9a6a3a" opacity="0.45" transform="rotate(-8 417 104)"/>
+
+      <path d="M390 138 Q412 122 425 105" stroke="#7a5228" stroke-width="1.2" fill="none" opacity="0.65"/>
+      <ellipse cx="426" cy="103" rx="5" ry="9" fill="#9a6a3a" opacity="0.58" transform="rotate(10 426 103)"/>
+      <ellipse cx="419" cy="94" rx="4" ry="8" fill="#8B5E3C" opacity="0.52" transform="rotate(-6 419 94)"/>
+      <ellipse cx="412" cy="86" rx="3.5" ry="7" fill="#a0714a" opacity="0.47" transform="rotate(8 412 86)"/>
+      <ellipse cx="406" cy="78" rx="3" ry="6" fill="#b08040" opacity="0.43" transform="rotate(-10 406 78)"/>
+
+      <path d="M375 118 Q395 102 408 84" stroke="#7a5228" stroke-width="1.1" fill="none" opacity="0.6"/>
+      <ellipse cx="409" cy="82" rx="4.5" ry="8.5" fill="#9a6a3a" opacity="0.55" transform="rotate(8 409 82)"/>
+      <ellipse cx="402" cy="73" rx="3.5" ry="7" fill="#8B5E3C" opacity="0.5" transform="rotate(-7 402 73)"/>
+      <ellipse cx="396" cy="65" rx="3" ry="6" fill="#a0714a" opacity="0.45" transform="rotate(6 396 65)"/>
+
+      <path d="M365 98 Q382 80 392 60" stroke="#7a5228" stroke-width="1" fill="none" opacity="0.55"/>
+      <ellipse cx="393" cy="58" rx="4" ry="8" fill="#9a6a3a" opacity="0.5" transform="rotate(6 393 58)"/>
+      <ellipse cx="386" cy="49" rx="3.5" ry="7" fill="#8B5E3C" opacity="0.45" transform="rotate(-8 386 49)"/>
+
+      <!-- Hojas grandes der -->
+      <path d="M430 175 Q395 145 372 105 Q398 142 430 175Z" fill="#7a5228" opacity="0.22"/>
+      <path d="M425 180 Q388 155 368 118 Q392 152 425 180Z" fill="#9a6a3a" opacity="0.18"/>
+      <path d="M400 162 Q372 135 358 98 Q380 132 400 162Z" fill="#7a5228" opacity="0.18"/>
+
+      <!-- Flores derecha -->
+      <circle cx="410" cy="148" r="7" fill="#d4956a" opacity="0.7"/>
+      <circle cx="410" cy="148" r="3" fill="#f0c870" opacity="0.8"/>
+      <ellipse cx="410" cy="139" rx="2.5" ry="5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="410" cy="157" rx="2.5" ry="5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="401" cy="148" rx="5" ry="2.5" fill="#d4a96a" opacity="0.55"/>
+      <ellipse cx="419" cy="148" rx="5" ry="2.5" fill="#d4a96a" opacity="0.55"/>
+
+      <circle cx="384" cy="122" r="6" fill="#c49a6c" opacity="0.65"/>
+      <circle cx="384" cy="122" r="2.5" fill="#e8cc90" opacity="0.75"/>
+      <ellipse cx="384" cy="114" rx="2" ry="4" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="384" cy="130" rx="2" ry="4" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="376" cy="122" rx="4" ry="2" fill="#c49a6c" opacity="0.5"/>
+      <ellipse cx="392" cy="122" rx="4" ry="2" fill="#c49a6c" opacity="0.5"/>
+
+      <circle cx="362" cy="88" r="5" fill="#d4a96a" opacity="0.6"/>
+      <circle cx="362" cy="88" r="2" fill="#f0d878" opacity="0.7"/>
+      <circle cx="352" cy="62" r="4" fill="#b8943c" opacity="0.55"/>
+      <circle cx="352" cy="62" r="1.5" fill="#f0e090" opacity="0.65"/>
+
+      <!-- ===== RAMAS CENTRO ===== -->
+      <path d="M180 180 Q200 155 205 120 Q208 95 215 70" stroke="#7a5228" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M250 180 Q230 155 225 120 Q222 95 215 70" stroke="#7a5228" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M205 140 Q185 128 172 115" stroke="#7a5228" stroke-width="1" fill="none" opacity="0.5"/>
+      <ellipse cx="171" cy="113" rx="4" ry="7" fill="#9a6a3a" opacity="0.5" transform="rotate(-12 171 113)"/>
+      <ellipse cx="165" cy="105" rx="3.5" ry="6" fill="#8B5E3C" opacity="0.45" transform="rotate(8 165 105)"/>
+      <path d="M225 140 Q245 128 258 115" stroke="#7a5228" stroke-width="1" fill="none" opacity="0.5"/>
+      <ellipse cx="259" cy="113" rx="4" ry="7" fill="#9a6a3a" opacity="0.5" transform="rotate(12 259 113)"/>
+      <ellipse cx="265" cy="105" rx="3.5" ry="6" fill="#8B5E3C" opacity="0.45" transform="rotate(-8 265 105)"/>
+      <!-- Flor centro -->
+      <circle cx="215" cy="68" r="8" fill="#d4956a" opacity="0.65"/>
+      <circle cx="215" cy="68" r="3.5" fill="#f0c870" opacity="0.78"/>
+      <ellipse cx="215" cy="58" rx="3" ry="6" fill="#d4a96a" opacity="0.52"/>
+      <ellipse cx="215" cy="78" rx="3" ry="6" fill="#d4a96a" opacity="0.52"/>
+      <ellipse cx="205" cy="68" rx="6" ry="3" fill="#d4a96a" opacity="0.52"/>
+      <ellipse cx="225" cy="68" rx="6" ry="3" fill="#d4a96a" opacity="0.52"/>
+      <path d="M185 170 Q212 148 215 115 Q218 148 245 170Z" fill="#7a5228" opacity="0.15"/>
+
+      <!-- ===== VELAS ===== -->
+      <!-- Vela izquierda grande -->
+      <rect x="105" y="90" width="14" height="70" rx="2" fill="#f5edd8" opacity="0.95"/>
+      <rect x="105" y="90" width="14" height="70" rx="2" fill="none" stroke="#d4b060" stroke-width="0.8" opacity="0.6"/>
+      <!-- Cera derramada -->
+      <ellipse cx="112" cy="160" rx="10" ry="4" fill="#f0e0b0" opacity="0.8"/>
+      <path d="M105 130 Q103 140 104 155 Q105 160 107 162" stroke="#e8d090" stroke-width="2" fill="none" opacity="0.6"/>
+      <!-- Mecha -->
+      <line x1="112" y1="90" x2="112" y2="82" stroke="#5a3e10" stroke-width="1.2" opacity="0.8"/>
+      <!-- Llama -->
+      <ellipse cx="112" cy="76" rx="4" ry="7" fill="#f0a020" opacity="0.85"/>
+      <ellipse cx="112" cy="74" rx="2.5" ry="5" fill="#f8d040" opacity="0.9"/>
+      <ellipse cx="112" cy="72" rx="1.2" ry="2.5" fill="#fffde0" opacity="0.95"/>
+      <!-- Brillo llama -->
+      <ellipse cx="112" cy="75" rx="8" ry="10" fill="#f0a020" opacity="0.12"/>
+
+      <!-- Vela derecha grande -->
+      <rect x="311" y="90" width="14" height="70" rx="2" fill="#f5edd8" opacity="0.95"/>
+      <rect x="311" y="90" width="14" height="70" rx="2" fill="none" stroke="#d4b060" stroke-width="0.8" opacity="0.6"/>
+      <ellipse cx="318" cy="160" rx="10" ry="4" fill="#f0e0b0" opacity="0.8"/>
+      <path d="M325 128 Q327 138 326 153 Q325 158 323 162" stroke="#e8d090" stroke-width="2" fill="none" opacity="0.6"/>
+      <line x1="318" y1="90" x2="318" y2="82" stroke="#5a3e10" stroke-width="1.2" opacity="0.8"/>
+      <ellipse cx="318" cy="76" rx="4" ry="7" fill="#f0a020" opacity="0.85"/>
+      <ellipse cx="318" cy="74" rx="2.5" ry="5" fill="#f8d040" opacity="0.9"/>
+      <ellipse cx="318" cy="72" rx="1.2" ry="2.5" fill="#fffde0" opacity="0.95"/>
+      <ellipse cx="318" cy="75" rx="8" ry="10" fill="#f0a020" opacity="0.12"/>
+
+      <!-- Vela izq pequeña -->
+      <rect x="80" y="118" width="10" height="50" rx="2" fill="#f5edd8" opacity="0.9"/>
+      <rect x="80" y="118" width="10" height="50" rx="2" fill="none" stroke="#d4b060" stroke-width="0.7" opacity="0.5"/>
+      <ellipse cx="85" cy="168" rx="7" ry="3" fill="#f0e0b0" opacity="0.75"/>
+      <line x1="85" y1="118" x2="85" y2="111" stroke="#5a3e10" stroke-width="1" opacity="0.75"/>
+      <ellipse cx="85" cy="106" rx="3" ry="5.5" fill="#f0a020" opacity="0.8"/>
+      <ellipse cx="85" cy="104" rx="2" ry="3.8" fill="#f8d040" opacity="0.88"/>
+      <ellipse cx="85" cy="102" rx="1" ry="2" fill="#fffde0" opacity="0.95"/>
+      <ellipse cx="85" cy="105" rx="6" ry="8" fill="#f0a020" opacity="0.1"/>
+
+      <!-- Vela der pequeña -->
+      <rect x="340" y="118" width="10" height="50" rx="2" fill="#f5edd8" opacity="0.9"/>
+      <rect x="340" y="118" width="10" height="50" rx="2" fill="none" stroke="#d4b060" stroke-width="0.7" opacity="0.5"/>
+      <ellipse cx="345" cy="168" rx="7" ry="3" fill="#f0e0b0" opacity="0.75"/>
+      <line x1="345" y1="118" x2="345" y2="111" stroke="#5a3e10" stroke-width="1" opacity="0.75"/>
+      <ellipse cx="345" cy="106" rx="3" ry="5.5" fill="#f0a020" opacity="0.8"/>
+      <ellipse cx="345" cy="104" rx="2" ry="3.8" fill="#f8d040" opacity="0.88"/>
+      <ellipse cx="345" cy="102" rx="1" ry="2" fill="#fffde0" opacity="0.95"/>
+      <ellipse cx="345" cy="105" rx="6" ry="8" fill="#f0a020" opacity="0.1"/>
+
+      <!-- Puntitos dorados dispersos -->
+      <circle cx="145" cy="150" r="1.5" fill="#b8943c" opacity="0.4"/>
+      <circle cx="160" cy="130" r="1" fill="#b8943c" opacity="0.3"/>
+      <circle cx="285" cy="150" r="1.5" fill="#b8943c" opacity="0.4"/>
+      <circle cx="270" cy="130" r="1" fill="#b8943c" opacity="0.3"/>
+      <circle cx="215" cy="150" r="1.5" fill="#b8943c" opacity="0.35"/>
+    </svg>
+  </div>
+
+  </div>
+</div>
+
+<!-- Modal RSVP -->
+<div class="modal-overlay" id="modal" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p class="modal-title">Confirmación</p>
+    <p class="modal-sub">XV Años · Juana</p>
+    <div id="rsvp-form">
+      <input type="text" id="rsvp-name" placeholder="Tu nombre completo" autocomplete="name" />
+      <div class="rsvp-opts">
+        <button class="rsvp-opt selected" id="opt-si" onclick="selectOpt('si')">Asistiré</button>
+        <button class="rsvp-opt" id="opt-no" onclick="selectOpt('no')">No podré</button>
+      </div>
+      <button class="btn-rsvp" onclick="submitRsvp()" style="margin-bottom:0;">Enviar</button>
+    </div>
+    <div class="success-msg" id="rsvp-success">
+      <div style="font-size:22px; color:#b8943c; margin-bottom:8px;">♥</div>
+      <p class="success-title" id="success-text">¡Gracias por confirmar!</p>
+      <p class="success-sub" id="success-sub">Te esperamos el 5 de septiembre</p>
+      <div style="font-size:14px; color:#b8943c; margin-top:10px; opacity:0.6;">❧ ♥ ❧</div>
+    </div>
+  </div>
+</div>
+
+<!-- YouTube invisible -->
+<div style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
+  <iframe id="yt-iframe" src=""
+    data-src="https://www.youtube.com/embed/ZFRMOG82SF0?autoplay=1&mute=0&loop=1&playlist=ZFRMOG82SF0&controls=0"
+    allow="autoplay; encrypted-media" frameborder="0" style="width:1px;height:1px;"></iframe>
+</div>
+
+<script>
+  const target = new Date('2026-09-05T21:00:00');
+
+  function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+  function tick() {
+    const diff = target - new Date();
+    if (diff <= 0) {
+      document.getElementById('cd-wrap').style.display = 'none';
+      document.getElementById('event-ended').style.display = 'block';
+      return;
+    }
+    document.getElementById('cd-d').textContent = pad(diff / 86400000);
+    document.getElementById('cd-h').textContent = pad((diff % 86400000) / 3600000);
+    document.getElementById('cd-m').textContent = pad((diff % 3600000) / 60000);
+    document.getElementById('cd-s').textContent = pad((diff % 60000) / 1000);
+  }
+
+  tick(); setInterval(tick, 1000);
+
+  let selected = 'si';
+  function selectOpt(opt) {
+    selected = opt;
+    document.getElementById('opt-si').classList.toggle('selected', opt === 'si');
+    document.getElementById('opt-no').classList.toggle('selected', opt === 'no');
+  }
+
+  function openModal() { document.getElementById('modal').classList.add('open'); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); }
+  function closeOnOverlay(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+  function submitRsvp() {
+    const nameEl = document.getElementById('rsvp-name');
+    const name = nameEl.value.trim();
+    if (!name) { nameEl.style.borderColor = '#c49a3c'; nameEl.focus(); return; }
+    const asistencia = selected === 'si' ? 'Asistiré' : 'No podré';
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLScsJkWoJpmfxD6lsHPG35NwowJPVJD_ZOitED1r1XEDRTQ3LA/formResponse';
+    const params = new URLSearchParams();
+    params.append('entry.666541351', name);
+    params.append('entry.1586933141', asistencia);
+    fetch(url + '?' + params.toString(), { method: 'POST', mode: 'no-cors' });
+    const successText = document.getElementById('success-text');
+    const successSub = document.getElementById('success-sub');
+    successText.textContent = selected === 'si' ? '¡Gracias, ' + name + '!' : 'Recibido, ' + name;
+    successSub.textContent = selected === 'si' ? 'Te esperamos el 5 de septiembre ✦' : 'Lamentamos que no puedas estar. ¡Gracias por avisar!';
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+
+  var musicStarted = false;
+  function startMusic() {
+    if (musicStarted) return;
+    musicStarted = true;
+    var iframe = document.getElementById('yt-iframe');
+    iframe.src = iframe.getAttribute('data-src');
+  }
+  document.addEventListener('touchstart', startMusic, { once: true });
+  document.addEventListener('click', startMusic, { once: true });
+</script>
+</body>
+</html>
